@@ -24,7 +24,7 @@ setup(
     packages=["pydango"],
     include_package_data=True,
     install_requires=[
-            "sqlalchemy==1.3.22",
+            "sqlalchemy==1.3.19",
             "sqlalchemy-utils==0.36.6", 
             "psycopg2-binary==2.8.6",
             "passlib==1.7.4",
