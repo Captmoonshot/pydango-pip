@@ -1,6 +1,6 @@
 # PYDANGO-PIP
 
-[![PyPI version fury.io](https://badge.fury.io/py/ansicolortags.svg)](https://pypi.org/project/pydango-pip/)
+[![PyPI version](https://badge.fury.io/py/pydango-pip.svg)](https://badge.fury.io/py/pydango-pip)
 
 pydango-pip is a pip-installable database schema that aims to mimic a movie ticket reservation database system (i.e. Fandango).  It's important to note that the database represented by the package is only what I think such a system should look like, not what it actually is.
 
