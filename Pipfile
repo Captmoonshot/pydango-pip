@@ -16,6 +16,7 @@ pytest = "*"
 tox = "*"
 bumpversion = "*"
 twine = "*"
+sphinx = "*"
 
 [dev-packages]
 
