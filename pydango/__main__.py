@@ -34,9 +34,9 @@ from pydango.tables import (
 
 
 def get_args():
-    parser = argparse.ArgumentParser(description='Pydango Database')
+    parser = argparse.ArgumentParser(description='Pydango-pip: the installable database')
     parser.add_argument('-d', '--database', metavar='database',
-        default='postgresql', help='Provide a database type: (SQLite or PostgreSQL)')
+        default='sqlite', help='Provide a database type: SQLite')
     return parser.parse_args()
 
 def main():
@@ -71,34 +71,10 @@ def main():
             return
 
         session.close()
-
-    # else:
-        # # postgresql session
-        # engine, session = create_session()
-
-        # Base.metadata.create_all(engine)
-
-        # # Autoload some data without user/CLI interface
-        # insert_category_data(session=session)
-        # insert_director_data(session=session)
-        # insert_actor_data(session=session)
-        # insert_account_data(session=session)
-        # insert_movie_data(session=session)
-        # insert_theater_data(session=session)
-
-        # print_header()
-
-        # try:
-        #     while True:
-        #         if find_user_intent() == 'find':
-        #             cinephile.run()
-        #         else:
-        #             theater_owner.run()
-        # except KeyboardInterrupt:
-        #     return
-
-        # session.close()
-
+    else:
+        print("\nYou must provide the '-d sqlite' flag to execute this program.\n")
+        print("\nFor help:\n")
+        print("python -m pydango -h\n")
 
 
 
