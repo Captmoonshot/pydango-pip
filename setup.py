@@ -8,7 +8,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
 	name="pydango-pip",
-    version="1.0.1",
+    version="1.0.2",
     description="Pip installable database schema that attempts to mimic the Fandango database",
     long_description=README,
     long_description_content_type="text/markdown",
