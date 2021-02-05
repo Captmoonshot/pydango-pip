@@ -1,3 +1,8 @@
+"""This particular method of fixtures for configuring the test cases
+in test_pydango_sqlite.py come from a stack overflow post:
+https://stackoverflow.com/questions/58660378/how-use-pytest-to-unit-test-sqlalchemy-orm-classes 
+with the solution from user Tryph"""
+
 import pytest
 
 from sqlalchemy import create_engine

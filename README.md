@@ -1,5 +1,7 @@
 # PYDANGO-PIP
 
+[![PyPI version fury.io](https://badge.fury.io/py/ansicolortags.svg)](https://pypi.org/project/pydango-pip/)
+
 pydango-pip is a pip-installable database schema that aims to mimic a movie ticket reservation database system (i.e. Fandango).  It's important to note that the database represented by the package is only what I think such a system should look like, not what it actually is.
 
 This was done in the spirit of experimentation and learning as a beginner Python programmer.
@@ -78,6 +80,12 @@ Title: Interstellar | Rating: PG-13
 Personally, building the project allowed me to appreciate what database engineers do for a living, and also to grokk database designs and just how complicated relational databases can get in the wild.
 
 Special shoutout to the [Las Vegas OpenSource Programming Group](https://github.com/OpenSource-Programming/sqlforbeginners) fro challenging me to take on this project.
+
+## To test 
+
+Run:
+
+`$ tox`
 
 
 For help:

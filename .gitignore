@@ -103,8 +103,6 @@ ENV/
 
 config.ini
 
-*.ini
-
 
 sqlite3.db
 *.db
