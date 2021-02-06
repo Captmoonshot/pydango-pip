@@ -2,17 +2,21 @@
 
 [![PyPI version](https://badge.fury.io/py/pydango-pip.svg)](https://badge.fury.io/py/pydango-pip)
 
-pydango-pip is a pip-installable database schema that aims to mimic a movie ticket reservation database system (i.e. Fandango).  It's important to note that the database represented by the package is only what I think such a system should look like, not what it actually is.
+pydango-pip is a [pip-installable](https://pypi.org/project/pydango-pip/) database schema that aims to mimic a movie ticket reservation database system (i.e. Fandango) through a CLI.
+
+It's important to note that the database represented by the package is only what I think such a system should look like, not what it actually is.
 
 This was done in the spirit of experimentation and learning as a beginner Python programmer.
 
-The inspiration came from a YouTube video by Mike Kennedy where he build an Air Bnb-like CLI for MongoDB with MongoEngine. I've taken a lot of his code and refactored it for SQLAlchemy and relational databases.  You can find the video here: https://youtu.be/E-1xI85Zog8
+The inspiration came from a YouTube video by Mike Kennedy where he builds an Air Bnb-like CLI for MongoDB with MongoEngine. I've taken a lot of his code and refactored it for SQLAlchemy and relational databases.  You can find the video here: https://youtu.be/E-1xI85Zog8
 
-You can also find the non-pip-installable version of Pydango called simply "Pydango" here: https://github.com/Captmoonshot/pydango
+You can also find the non-pip-installable version of Pydango called simply "Pydango" here: https://github.com/Captmoonshot/pydango .  
 
-The regular version of Pydango is good to clone.  Once you clone it, and set up a configuration file, you can use it for both an SQLite and/or PostgreSQL database backend.
+This regular version of Pydango is good to clone and interact with through both the CLI and a database backend to really grokk what goes on behind the scenes.  Once you clone it, and set up a configuration file, you can use it for both an SQLite and/or PostgreSQL database backend.
 
 However, pydango-pip will only work with SQLite database backends.
+
+If you're curious about the actual database design, you can find the full SQL code to create the entire schema with MySQL at the [py-dango GitHub repository](https://github.com/Captmoonshot/py-dango).
 
 ## Installation
 
@@ -79,11 +83,11 @@ Title: Interstellar | Rating: PG-13
 
 Personally, building the project allowed me to appreciate what database engineers do for a living, and also to grokk database designs and just how complicated relational databases can get in the wild.
 
-Special shoutout to the [Las Vegas OpenSource Programming Group](https://github.com/OpenSource-Programming/sqlforbeginners) fro challenging me to take on this project.
+Special shoutout to the [Las Vegas OpenSource Programming Group](https://github.com/OpenSource-Programming/sqlforbeginners) for challenging me to take on this project.
 
 ## To test 
 
-Run:
+Clone the project and run:
 
 `$ tox`
 

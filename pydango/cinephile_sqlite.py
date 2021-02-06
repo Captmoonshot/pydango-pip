@@ -40,6 +40,10 @@ engine = create_engine('sqlite:///sqlite3.db')
 engine, session = create_sqlite_session(engine=engine)
 
 def run():
+    """
+    The main executable function for the cinephile type of user
+    """
+
     print('****************** Hello Cinephile ******************')
     print()
     
@@ -75,6 +79,10 @@ def run():
 
 
 def show_commands():
+    """
+    Function to display a choice menu to the cinephile type of user
+    """
+
     print('What action would you like to take: ')
     print('[C]reate an account')
     print('[L]ogin to your account')
@@ -90,6 +98,12 @@ def show_commands():
     print()
 
 def create_account():
+    """
+    Function to register a cinephile user
+
+    All inputs are given by the user through a CLI
+    """
+
     print("****************** REGISTER ******************")
 
     print()
@@ -104,11 +118,13 @@ def create_account():
     first_name = input("What is your first name? ").strip()
     last_name = input("What is your last name? ").strip()
 
+    # If an account already exists, tell the user, and go back to menu
     old_account = session.query(Account).filter_by(email=email).first()
     if old_account:
         secondary_func.error_msg(f"ERROR: Account with email {email} already exists.")
         return
 
+    # Otherwise create the account
     account = Account(
         email=email,
         credit_card=credit_card,
@@ -125,12 +141,19 @@ def create_account():
 
     session.commit()
 
+    # Store the account obj as our active account
     state.active_account = account
     secondary_func.success_msg(f"\nCreated new account with id {state.active_account.id}")
 
  
 
 def log_into_account():
+    """
+    Function to log into account
+
+    :return: state.active_account
+    """
+
     print("****************** LOGIN ******************")
 
     email = input("Email: ").strip()
@@ -151,6 +174,10 @@ def log_into_account():
     return state.active_account
 
 def logout():
+    """
+    Function to log out of the account
+    """
+
     if state.active_account is None:
         print("You are already logged-out.")
         return
@@ -158,6 +185,10 @@ def logout():
     print("You are logged-out.")
 
 def list_movies():
+    """
+    Function to list all active movies in the movie table
+    """
+
     print("****************** BROWSE FOR MOVIES ******************")
     print()
 
@@ -185,6 +216,10 @@ def list_movies():
             break
 
 def browse_by_location():
+    """
+    Function to filter movies and theaters by zip_code or city attribute of Theater class
+    """
+
     print("****************** BROWSE FOR MOVIES BY LOCATION ******************")
     print()
 
@@ -218,6 +253,10 @@ def browse_by_location():
             print("Please check back when we get a government that cares about its people.")
 
 def browse_by_category():
+    """
+    Function to filter movies by their categories
+    """
+
     print("****************** BROWSE FOR MOVIES BY CATEGORY ******************")
     print()
 
@@ -244,6 +283,11 @@ def browse_by_category():
 
 
 def purchase_ticket():
+    """
+    Function to allow the user to purchase a ticket based on movies,
+    theaters, and their schedules
+    """
+
     print("****************** PURCHASE TICKETS ******************")
     print()
 
@@ -295,6 +339,7 @@ def purchase_ticket():
     # I need to figure out the price for the category chosen for 
     # this particular theater outside of the loop because we don't want to do this for every theater
     my_theater = session.query(Theater).filter_by(id=my_ticket[1]).first()
+    # my_movie is used later for the receipt information
     my_movie = session.query(Movie).filter_by(id=my_ticket[2]).first()
 
     ticket_price = float(my_theater.ticket_price[category])
@@ -329,6 +374,8 @@ def purchase_ticket():
             time=my_ticket[3]
     ).first()
     new_seats_available = my_theater_schedule.seats_available - quantity
+    # SQLAlchemy Expression Language as the theaters_schedule is a Table construct
+    # and not an ORM object
     engine.execute(update(theater_schedule).where(and_(theater_schedule.c.theater_id==my_ticket[1],
         theater_schedule.c.movie_id==my_ticket[2],
         theater_schedule.c.time==my_ticket[3])).values(seats_available=new_seats_available))
@@ -346,6 +393,12 @@ def purchase_ticket():
     print("\nEnjoy your movie!\n")
 
 def view_ticket():
+    """
+    Function to view the account's associated ticket they purchased 
+    for the day of purchase.  Other previous tickets before datetime.datetime.today()
+    are considered expired and not shown
+    """
+    
     print("****************** VIEW MY CURRENT TICKETS ******************")
     print()
 

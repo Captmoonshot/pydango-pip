@@ -33,6 +33,11 @@ from sqlalchemy import (
 Base = declarative_base()
 
 class Account(Base):
+    """
+    Class that maps to the account table in the database and hold
+    data about user accounts
+    """
+
     __tablename__ = "account"
 
     id              = Column(Integer, primary_key=True)
@@ -66,6 +71,11 @@ movie_actors = Table(
 )
 
 class Actor(Base):
+    """
+    Class that maps to actor table in the database and hold data
+    about actors
+    """
+
     __tablename__ = 'actor'
 
     id          = Column(Integer, primary_key=True)
@@ -82,6 +92,11 @@ class Actor(Base):
 
 
 class Category(Base):
+    """
+    Class that maps to category table in database and holds data
+    about movie categories
+    """
+
     __tablename__ = "category"
 
     id              = Column(Integer, primary_key=True)
@@ -92,6 +107,11 @@ class Category(Base):
 
 
 class Director(Base):
+    """
+    Class that maps to director table in the database and holds
+    data about movie directors
+    """
+
     __tablename__ = 'director'
 
     id          = Column(Integer, primary_key=True)
@@ -103,6 +123,9 @@ class Director(Base):
 
 
 class Movie(Base):
+    """Class that maps to movie table in the database and holds data
+    about movies"""
+
     __tablename__ = 'movie'
 
     id              = Column(Integer, primary_key=True)
@@ -138,6 +161,11 @@ Category.movies = relationship("Movie", order_by=Movie.id, back_populates="categ
 
 
 class Theater(Base):
+    """
+    Class that maps to theater table in the database and holds data about
+    movie theaters
+    """
+
     __tablename__ = 'theater'
 
     id              = Column(Integer, primary_key=True)
@@ -157,6 +185,11 @@ class Theater(Base):
 
 
 class TheaterMovie(Base):
+    """
+    Class that links movies and theaters in a Many-To-Many relation aka 
+    Association object in SQLAlchemy parlance
+    """
+
     __tablename__ = 'theatermovie'
 
     theater_id      = Column(Integer, ForeignKey('theater.id'), primary_key=True)
@@ -190,6 +223,11 @@ theater_schedule = Table(
 
 
 class Payment(Base):
+    """
+    Class that maps to payment table in the database and holds 
+    data about ticket payments
+    """
+
     __tablename__ = 'payment'
 
     id          = Column(Integer, primary_key=True)
@@ -202,6 +240,11 @@ class Payment(Base):
 
 
 class Ticket(Base):
+    """
+    Class that maps to ticket table in the database and holds data about 
+    movies, theaters, schedules, accounts, and price of tickets
+    """
+
     __tablename__ = 'ticket'
 
     id              = Column(Integer, primary_key=True)
