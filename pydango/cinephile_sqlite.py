@@ -1,3 +1,14 @@
+"""
+
+CLI for Cinephile
+=======================================
+
+The following functions represent the CLI flow for cinephile-type users.  These are users
+who want to watch movies and will be searching for movies and purchasing tickets from
+theater_owner-type users.
+
+"""
+
 from getpass import getpass
 from pprint import pprint
 
@@ -41,7 +52,9 @@ engine, session = create_sqlite_session(engine=engine)
 
 def run():
     """
+
     The main executable function for the cinephile type of user
+
     """
 
     print('****************** Hello Cinephile ******************')
@@ -80,7 +93,9 @@ def run():
 
 def show_commands():
     """
+
     Function to display a choice menu to the cinephile type of user
+
     """
 
     print('What action would you like to take: ')
@@ -99,9 +114,11 @@ def show_commands():
 
 def create_account():
     """
+
     Function to register a cinephile user
 
     All inputs are given by the user through a CLI
+
     """
 
     print("****************** REGISTER ******************")
@@ -149,9 +166,11 @@ def create_account():
 
 def log_into_account():
     """
+
     Function to log into account
 
     :return: state.active_account
+
     """
 
     print("****************** LOGIN ******************")
@@ -175,7 +194,9 @@ def log_into_account():
 
 def logout():
     """
+
     Function to log out of the account
+
     """
 
     if state.active_account is None:
@@ -186,7 +207,9 @@ def logout():
 
 def list_movies():
     """
+
     Function to list all active movies in the movie table
+
     """
 
     print("****************** BROWSE FOR MOVIES ******************")
@@ -217,7 +240,9 @@ def list_movies():
 
 def browse_by_location():
     """
+
     Function to filter movies and theaters by zip_code or city attribute of Theater class
+
     """
 
     print("****************** BROWSE FOR MOVIES BY LOCATION ******************")
@@ -254,7 +279,9 @@ def browse_by_location():
 
 def browse_by_category():
     """
+
     Function to filter movies by their categories
+
     """
 
     print("****************** BROWSE FOR MOVIES BY CATEGORY ******************")
@@ -284,8 +311,10 @@ def browse_by_category():
 
 def purchase_ticket():
     """
+
     Function to allow the user to purchase a ticket based on movies,
     theaters, and their schedules
+
     """
 
     print("****************** PURCHASE TICKETS ******************")
@@ -394,11 +423,13 @@ def purchase_ticket():
 
 def view_ticket():
     """
+
     Function to view the account's associated ticket they purchased 
     for the day of purchase.  Other previous tickets before datetime.datetime.today()
     are considered expired and not shown
-    """
     
+    """
+
     print("****************** VIEW MY CURRENT TICKETS ******************")
     print()
 

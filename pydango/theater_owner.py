@@ -1,3 +1,6 @@
+"""The code found in this module will not get executed by __main__.main() and is here
+for potential future changes to the app"""
+
 from datetime import date, datetime
 from getpass import getpass
 

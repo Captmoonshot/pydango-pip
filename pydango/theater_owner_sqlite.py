@@ -1,3 +1,15 @@
+"""
+
+CLI for Theater-owner
+=======================================
+
+The following functions represent the CLI flow for theater_owner-type users.  These are users
+who want to list movies that are currently playing and will be selling tickets to cinephile-
+type users.
+
+"""
+
+
 from datetime import date, datetime
 from getpass import getpass
 
@@ -40,6 +52,12 @@ engine, session = create_sqlite_session(engine=engine)
 
 
 def run():
+    """
+
+    The main executable function for theater-owner type users
+    
+    """
+
     print('****************** Hello Theater Owner ******************')
     print()
     
@@ -72,6 +90,13 @@ def run():
 
 
 def show_commands():
+    """
+
+    Function to display choice menu to theater-owners.  This list of commands is different
+    from the show_commands for cinephile-type users
+
+    """
+
     print('What action would you like to take: ')
     print('[C]reate a theater owner account')
     print('[L]ogin to your account')
@@ -87,7 +112,12 @@ def show_commands():
     print()
 
 def create_account():
-    """Violation of DRY principle"""
+    """
+
+    Function to allow users to create a theater_owner-type account which
+    is different from the cinephile-type account
+
+    """
 
     print("****************** REGISTER THEATER OWNER ******************")
 
@@ -129,6 +159,12 @@ def create_account():
 
 
 def create_actor():
+    """
+
+    Function to create an actor
+
+    """
+
     print("****************** POST AN ACTOR ******************")
     print()
 
@@ -161,6 +197,12 @@ def create_actor():
     print("\nSuccess!\n")
 
 def create_movie():
+    """
+
+    Function to create a movie object along with the associated theater object
+
+    """
+
     print("****************** POST A NEW MOVIE ******************")
     print()
 
@@ -304,6 +346,12 @@ def create_movie():
 
 
 def create_theater():
+    """
+
+    Function to create a theater object
+
+    """
+
     print("****************** REGISTER A NEW THEATER ******************")
     print()
 
@@ -356,6 +404,13 @@ def create_theater():
     print("\nSuccess!\n")
 
 def add_movie_to_existing_theater():
+    """
+
+    Function to add a movie object to an exisint movie theater using 
+    a Many-to-Many relationship
+
+    """
+
     print("****************** ADD A MOVIE TO AN EXISTING THEATER ******************")
     print()
 
@@ -403,6 +458,12 @@ def add_movie_to_existing_theater():
             break
         
 def add_schedule_to_existing_theater():
+    """
+
+    Function to add a unique schedule to an existing movie theater
+
+    """
+
     print("****************** ADD A SCHEDULE TO AN EXISTING THEATER ******************")
     print()
 

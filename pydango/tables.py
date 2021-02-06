@@ -1,4 +1,13 @@
-"""Account class for the account TABLE"""
+"""
+
+pydango-pip's ORM Relationships
+=======================================
+
+The following classes represent the Python classes that gets mapped to their SQL equivalents
+using SQLAlchemy ORM's declarative syntax which allows for things like Many-to-One and 
+Many-to-Many relationships.
+
+"""
 
 import datetime
 from datetime import date
@@ -34,8 +43,10 @@ Base = declarative_base()
 
 class Account(Base):
     """
+
     Class that maps to the account table in the database and hold
     data about user accounts
+
     """
 
     __tablename__ = "account"
@@ -72,8 +83,10 @@ movie_actors = Table(
 
 class Actor(Base):
     """
+
     Class that maps to actor table in the database and hold data
     about actors
+
     """
 
     __tablename__ = 'actor'
@@ -93,8 +106,10 @@ class Actor(Base):
 
 class Category(Base):
     """
+
     Class that maps to category table in database and holds data
     about movie categories
+
     """
 
     __tablename__ = "category"
@@ -108,8 +123,10 @@ class Category(Base):
 
 class Director(Base):
     """
+
     Class that maps to director table in the database and holds
     data about movie directors
+
     """
 
     __tablename__ = 'director'
@@ -123,8 +140,12 @@ class Director(Base):
 
 
 class Movie(Base):
-    """Class that maps to movie table in the database and holds data
-    about movies"""
+    """
+    
+    Class that maps to movie table in the database and holds data
+    about movies
+    
+    """
 
     __tablename__ = 'movie'
 
@@ -162,8 +183,10 @@ Category.movies = relationship("Movie", order_by=Movie.id, back_populates="categ
 
 class Theater(Base):
     """
+
     Class that maps to theater table in the database and holds data about
     movie theaters
+
     """
 
     __tablename__ = 'theater'
@@ -186,8 +209,13 @@ class Theater(Base):
 
 class TheaterMovie(Base):
     """
+
     Class that links movies and theaters in a Many-To-Many relation aka 
-    Association object in SQLAlchemy parlance
+    Association object in SQLAlchemy parlance.
+
+    Association objects allow extra data on top of the ForeignKeys as attributes for
+    the relationship.
+
     """
 
     __tablename__ = 'theatermovie'
@@ -224,8 +252,10 @@ theater_schedule = Table(
 
 class Payment(Base):
     """
+
     Class that maps to payment table in the database and holds 
     data about ticket payments
+
     """
 
     __tablename__ = 'payment'
@@ -241,8 +271,10 @@ class Payment(Base):
 
 class Ticket(Base):
     """
+
     Class that maps to ticket table in the database and holds data about 
     movies, theaters, schedules, accounts, and price of tickets
+    
     """
 
     __tablename__ = 'ticket'

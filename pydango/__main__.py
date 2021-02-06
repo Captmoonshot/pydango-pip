@@ -71,8 +71,10 @@ def main():
     insert_<table_name>_data(session=session) functions.
 
     We then divide our users into two distinct groups with the find_user_intent function:
+
     1. cinephile (people who want to watch movies)
     2. theater_owner (people who own movies theaters and supply the movies to watch)
+
 
     And execute the CLI flow for the respective user types.
     """
