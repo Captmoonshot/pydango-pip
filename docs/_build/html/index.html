@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to pydango-pip’s documentation! &#8212; pydango-pip 1.0.2 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pydango.__main__">
+<span id="welcome-to-pydango-pip-s-documentation"></span><h1>Welcome to pydango-pip’s documentation!<a class="headerlink" href="#module-pydango.__main__" title="Permalink to this headline">¶</a></h1>
+<p>Pydango-pip is a pip-intallable database schema that you can interact with through a CLI.
+The schema is meant to mimic a movie theater reservation system such as Fandango.</p>
+<p>The inspiration came from a YouTube video by Mike Kennedy where he builds an Air Bnb-like CLI 
+for MongoDB with MongoEngine. I’ve taken a lot of his code and refactored it for SQLAlchemy 
+and relational databases.  You can find the video here: <a class="reference external" href="https://youtu.be/E-1xI85Zog8">https://youtu.be/E-1xI85Zog8</a>.</p>
+<p>You can also find the non-pip-installable version of Pydango called simply “Pydango” here: <a class="reference external" href="https://github.com/Captmoonshot/pydango">https://github.com/Captmoonshot/pydango</a> .</p>
+<p>This regular version of Pydango is good to clone and interact with through both the CLI and a database backend to really grokk what goes on behind the scenes.  Once you clone it, and set up a configuration file, you can use it for both an SQLite and/or PostgreSQL database backend.</p>
+<p>However, pydango-pip will only work with SQLite database backends.</p>
+<dl class="py function">
+<dt id="pydango.__main__.get_args">
+<code class="sig-prename descclassname">pydango.__main__.</code><code class="sig-name descname">get_args</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.__main__.get_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to parse arguments from the command-line using the argparse module</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>arguments</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.__main__.main">
+<code class="sig-prename descclassname">pydango.__main__.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.__main__.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pydango-pip’s main executable function.  Gets the database argument
+from the command-line.  Using SQLAlchemy’s ORM pattern, creates an engine
+and session.  The session is then used to create the database schema:
+tables and relations.</p>
+<p>We then automatically load initial data into those tables using 
+insert_&lt;table_name&gt;_data(session=session) functions.</p>
+<p>We then divide our users into two distinct groups with the find_user_intent function:</p>
+<ol class="arabic simple">
+<li><p>cinephile (people who want to watch movies)</p></li>
+<li><p>theater_owner (people who own movies theaters and supply the movies to watch)</p></li>
+</ol>
+<p>And execute the CLI flow for the respective user types.</p>
+</dd></dl>
+
+<span class="target" id="module-pydango.tables"></span><div class="section" id="pydango-pip-s-orm-relationships">
+<h2>pydango-pip’s ORM Relationships<a class="headerlink" href="#pydango-pip-s-orm-relationships" title="Permalink to this headline">¶</a></h2>
+<p>The following classes represent the Python classes that gets mapped to their SQL equivalents
+using SQLAlchemy ORM’s declarative syntax which allows for things like Many-to-One and 
+Many-to-Many relationships.</p>
+<dl class="py class">
+<dt id="pydango.tables.Account">
+<em class="property">class </em><code class="sig-prename descclassname">pydango.tables.</code><code class="sig-name descname">Account</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydango.tables.Account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that maps to the account table in the database and hold
+data about user accounts</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="pydango.tables.Actor">
+<em class="property">class </em><code class="sig-prename descclassname">pydango.tables.</code><code class="sig-name descname">Actor</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydango.tables.Actor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that maps to actor table in the database and hold data
+about actors</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="pydango.tables.Category">
+<em class="property">class </em><code class="sig-prename descclassname">pydango.tables.</code><code class="sig-name descname">Category</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydango.tables.Category" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that maps to category table in database and holds data
+about movie categories</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="pydango.tables.Director">
+<em class="property">class </em><code class="sig-prename descclassname">pydango.tables.</code><code class="sig-name descname">Director</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydango.tables.Director" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that maps to director table in the database and holds
+data about movie directors</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="pydango.tables.Movie">
+<em class="property">class </em><code class="sig-prename descclassname">pydango.tables.</code><code class="sig-name descname">Movie</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydango.tables.Movie" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that maps to movie table in the database and holds data
+about movies</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="pydango.tables.Payment">
+<em class="property">class </em><code class="sig-prename descclassname">pydango.tables.</code><code class="sig-name descname">Payment</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydango.tables.Payment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that maps to payment table in the database and holds 
+data about ticket payments</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="pydango.tables.Theater">
+<em class="property">class </em><code class="sig-prename descclassname">pydango.tables.</code><code class="sig-name descname">Theater</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydango.tables.Theater" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that maps to theater table in the database and holds data about
+movie theaters</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="pydango.tables.TheaterMovie">
+<em class="property">class </em><code class="sig-prename descclassname">pydango.tables.</code><code class="sig-name descname">TheaterMovie</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydango.tables.TheaterMovie" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that links movies and theaters in a Many-To-Many relation aka 
+Association object in SQLAlchemy parlance.</p>
+<p>Association objects allow extra data on top of the ForeignKeys as attributes for
+the relationship.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="pydango.tables.Ticket">
+<em class="property">class </em><code class="sig-prename descclassname">pydango.tables.</code><code class="sig-name descname">Ticket</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydango.tables.Ticket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that maps to ticket table in the database and holds data about 
+movies, theaters, schedules, accounts, and price of tickets</p>
+</dd></dl>
+
+</div>
+<span class="target" id="module-pydango.cinephile_sqlite"></span><div class="section" id="cli-for-cinephile">
+<h2>CLI for Cinephile<a class="headerlink" href="#cli-for-cinephile" title="Permalink to this headline">¶</a></h2>
+<p>The following functions represent the CLI flow for cinephile-type users.  These are users
+who want to watch movies and will be searching for movies and purchasing tickets from
+theater_owner-type users.</p>
+<dl class="py function">
+<dt id="pydango.cinephile_sqlite.browse_by_category">
+<code class="sig-prename descclassname">pydango.cinephile_sqlite.</code><code class="sig-name descname">browse_by_category</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.cinephile_sqlite.browse_by_category" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to filter movies by their categories</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.cinephile_sqlite.browse_by_location">
+<code class="sig-prename descclassname">pydango.cinephile_sqlite.</code><code class="sig-name descname">browse_by_location</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.cinephile_sqlite.browse_by_location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to filter movies and theaters by zip_code or city attribute of Theater class</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.cinephile_sqlite.create_account">
+<code class="sig-prename descclassname">pydango.cinephile_sqlite.</code><code class="sig-name descname">create_account</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.cinephile_sqlite.create_account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to register a cinephile user</p>
+<p>All inputs are given by the user through a CLI</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.cinephile_sqlite.list_movies">
+<code class="sig-prename descclassname">pydango.cinephile_sqlite.</code><code class="sig-name descname">list_movies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.cinephile_sqlite.list_movies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to list all active movies in the movie table</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.cinephile_sqlite.log_into_account">
+<code class="sig-prename descclassname">pydango.cinephile_sqlite.</code><code class="sig-name descname">log_into_account</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.cinephile_sqlite.log_into_account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to log into account</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>state.active_account</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.cinephile_sqlite.logout">
+<code class="sig-prename descclassname">pydango.cinephile_sqlite.</code><code class="sig-name descname">logout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.cinephile_sqlite.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to log out of the account</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.cinephile_sqlite.purchase_ticket">
+<code class="sig-prename descclassname">pydango.cinephile_sqlite.</code><code class="sig-name descname">purchase_ticket</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.cinephile_sqlite.purchase_ticket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to allow the user to purchase a ticket based on movies,
+theaters, and their schedules</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.cinephile_sqlite.run">
+<code class="sig-prename descclassname">pydango.cinephile_sqlite.</code><code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.cinephile_sqlite.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main executable function for the cinephile type of user</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.cinephile_sqlite.show_commands">
+<code class="sig-prename descclassname">pydango.cinephile_sqlite.</code><code class="sig-name descname">show_commands</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.cinephile_sqlite.show_commands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to display a choice menu to the cinephile type of user</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.cinephile_sqlite.view_ticket">
+<code class="sig-prename descclassname">pydango.cinephile_sqlite.</code><code class="sig-name descname">view_ticket</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.cinephile_sqlite.view_ticket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to view the account’s associated ticket they purchased 
+for the day of purchase.  Other previous tickets before datetime.datetime.today()
+are considered expired and not shown</p>
+</dd></dl>
+
+</div>
+<span class="target" id="module-pydango.theater_owner_sqlite"></span><div class="section" id="cli-for-theater-owner">
+<h2>CLI for Theater-owner<a class="headerlink" href="#cli-for-theater-owner" title="Permalink to this headline">¶</a></h2>
+<p>The following functions represent the CLI flow for theater_owner-type users.  These are users
+who want to list movies that are currently playing and will be selling tickets to cinephile-
+type users.</p>
+<dl class="py function">
+<dt id="pydango.theater_owner_sqlite.add_movie_to_existing_theater">
+<code class="sig-prename descclassname">pydango.theater_owner_sqlite.</code><code class="sig-name descname">add_movie_to_existing_theater</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.theater_owner_sqlite.add_movie_to_existing_theater" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to add a movie object to an exisint movie theater using 
+a Many-to-Many relationship</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.theater_owner_sqlite.add_schedule_to_existing_theater">
+<code class="sig-prename descclassname">pydango.theater_owner_sqlite.</code><code class="sig-name descname">add_schedule_to_existing_theater</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.theater_owner_sqlite.add_schedule_to_existing_theater" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to add a unique schedule to an existing movie theater</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.theater_owner_sqlite.create_account">
+<code class="sig-prename descclassname">pydango.theater_owner_sqlite.</code><code class="sig-name descname">create_account</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.theater_owner_sqlite.create_account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to allow users to create a theater_owner-type account which
+is different from the cinephile-type account</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.theater_owner_sqlite.create_actor">
+<code class="sig-prename descclassname">pydango.theater_owner_sqlite.</code><code class="sig-name descname">create_actor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.theater_owner_sqlite.create_actor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to create an actor</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.theater_owner_sqlite.create_movie">
+<code class="sig-prename descclassname">pydango.theater_owner_sqlite.</code><code class="sig-name descname">create_movie</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.theater_owner_sqlite.create_movie" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to create a movie object along with the associated theater object</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.theater_owner_sqlite.create_theater">
+<code class="sig-prename descclassname">pydango.theater_owner_sqlite.</code><code class="sig-name descname">create_theater</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.theater_owner_sqlite.create_theater" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to create a theater object</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.theater_owner_sqlite.run">
+<code class="sig-prename descclassname">pydango.theater_owner_sqlite.</code><code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.theater_owner_sqlite.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main executable function for theater-owner type users</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pydango.theater_owner_sqlite.show_commands">
+<code class="sig-prename descclassname">pydango.theater_owner_sqlite.</code><code class="sig-name descname">show_commands</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydango.theater_owner_sqlite.show_commands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to display choice menu to theater-owners.  This list of commands is different
+from the show_commands for cinephile-type users</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">pydango-pip</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Sammy Lee.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
