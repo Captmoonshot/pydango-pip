@@ -91,6 +91,10 @@ Clone the project and run:
 
 `$ tox`
 
+## Documentation
+
+More detailed information can be found at [Read the Docs](https://pydango-pip.readthedocs.io/en/latest/index.html)
+
 
 For help:
 
