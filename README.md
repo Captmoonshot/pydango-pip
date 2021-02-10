@@ -26,6 +26,10 @@ You can install pydango-pip with pip: [PYPI](https://pypi.org/project/pydango-pi
 
 pydango-pip is supported by Python 3.7 and above.
 
+Docker:
+
+`docker container run -it captmoonshot999/pydango-pip`
+
 ## How to use
 
 pydango-pip is a command line application. 
